@@ -2,11 +2,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 const errorHandler = require('./middlewares/error');
 const path = require('path');
-const morgan = require('morgan');
 const cors = require('cors');
 dotenv.config({ path: './config/config.env' });
 const db = require('./db/db-connect');
-
+const compression = require('compression');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
@@ -31,7 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(morgan('dev'));
 //routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -41,27 +39,17 @@ app.use('/api/dialogs/', dialogRoutes);
 app.use('/api/comments', commentRoutes);
 
 app.use(errorHandler);
+app.use(compression());
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
-    console.log(`Server running on port: ${PORT}`);
-});
+const server = app.listen(PORT);
 
 global.io = require('socket.io')(server);
-
-// const connectIO = require('socket.io')(server);
-
-io.on('connection', function(socket){
-    socket.emit('status', 'Online');
-    socket.on('disconnect', function(){
-        socket.emit('status', 'Offline');
-    });
-});
 
 process.on('unhandledRejection', (err, promise) => {
     console.log(`Error: ${err.message}`.red);
