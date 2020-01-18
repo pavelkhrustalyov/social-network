@@ -1,0 +1,33 @@
+.comment_item {
+    border-radius: 3px;
+    padding: 0 40px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    &:last-child {
+        margin-bottom: 0px;
+        border-bottom: none;
+    }
+    &-delete {
+        color: var(--color-icon-special);
+        cursor: pointer;
+        margin-left: auto;
+        margin-top: auto;
+    }
+    &-user {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+    }
+    &-data {
+        display: flex;
+    }
+    &-date {
+        color: var(--color-icon);
+        margin-left: 15px;
+    }
+
+    &-text {
+        word-wrap: break-word;
+    }
+}

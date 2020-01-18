@@ -1,0 +1,34 @@
+.message-item {
+    max-width: 250px;
+    word-wrap: break-word;
+    background-color: var(--color-bg);
+    color: var(--color-main-text);
+    font-size: 15px;
+    padding: 14px;
+    border-radius: 10px 10px 0px 10px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 10px;
+    z-index: 1;
+    &:first-child {
+        margin-top: 40px;
+    }
+  
+    &.my {
+        margin-left: auto;
+        border-radius: 10px 10px 10px 0px;
+        background-color: var(--color-my-message);
+        color: var(--color-main-text);
+        .message-item_date {
+            color: var(--color-main-text);
+        }
+    }
+    &_date {
+        position: absolute;
+        color: var(--color-main-text);
+        font-size: 14px;
+        bottom: 2px;
+        right: 5px;
+    }
+}
+

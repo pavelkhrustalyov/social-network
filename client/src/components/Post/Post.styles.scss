@@ -1,0 +1,26 @@
+.post {
+    margin-top: 4px;
+    border-radius: 0 3px 3px 0;
+    color: var(--color-main-text);
+    &.scroll {
+        height: calc(800px - 72px);
+        // overflow: scroll;
+    }
+}
+
+.posts-enter {
+    opacity: 0.01;
+  }
+.posts-enter.posts-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
+
+.posts-leave {
+    opacity: 1;
+}
+
+.posts-leave.posts-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}

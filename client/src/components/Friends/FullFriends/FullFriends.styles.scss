@@ -1,0 +1,17 @@
+.full-friends {
+    color: var(--color-main-text);
+    &_item {
+        padding: 10px;
+        color: var(--color-main-text);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        a {
+            margin-right: 20px;
+        }
+        &:hover {
+            background-color: var(--color-icon);
+        }
+    }
+}

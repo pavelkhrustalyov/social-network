@@ -1,0 +1,44 @@
+.message_wrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.messages {
+    background-color: var(--color-main);
+    padding: 20px;
+    overflow: scroll;
+    height: calc(500px - 2px);
+    box-shadow: 0px 0px 2px -1px var(--color-shadow);
+    border-radius: 0 3px 3px 0;
+    margin-bottom: 4px;
+    &-loadmore {
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--color-main-text);
+        z-index: 10000;
+        // opacity: 0;
+        width: 100%;
+        position: absolute;
+        cursor: pointer;
+    }
+}
+.select_dialog {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--color-icon);
+
+    .fas {
+        margin-right: 20px;
+        color: var(--color-icon);
+    }
+}

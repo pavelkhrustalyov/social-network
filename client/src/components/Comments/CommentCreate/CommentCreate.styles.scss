@@ -1,0 +1,15 @@
+.comment-create {
+    margin-top: 25px;
+    transition: 0.3s all;
+    &_form {
+        input {
+            width: 50%;
+        }
+    
+        @media (min-width: 1024px) {
+            button {
+                display: none;
+            }
+        }
+    }
+}

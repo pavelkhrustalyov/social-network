@@ -1,0 +1,33 @@
+.modal {
+    position: absolute;
+    border-radius: 3px;
+    height: 500px;
+    background-color: var(--color-main);
+    z-index: 1000;
+    top: 35%;
+    left: 35%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    &.small {
+        height: 200px;
+    }
+    &.middle {
+        height: 500px;
+    }
+    &.big {
+        height: 700px;
+        top: 300px;
+        min-width: 600px;
+        overflow: auto;
+    }
+    &_overlay {
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}

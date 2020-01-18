@@ -1,0 +1,18 @@
+.create-dialog {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &_controls {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .fas {
+            font-size: 30px;
+            color: var(--color-icon-special);
+            cursor: pointer;
+        }
+    }
+}

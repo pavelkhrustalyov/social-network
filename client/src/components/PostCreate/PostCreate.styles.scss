@@ -1,0 +1,53 @@
+.post-create {
+    border-radius: 3px;
+    position: relative;
+    &__form {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        textarea {
+            width: 400px;
+        }
+    }
+
+    &__addition {
+        position: relative;
+        display: flex;
+        align-items: center;
+        z-index: 10;
+        .fas {
+            font-size: 30px;
+            color: var(--color-icon);
+            cursor: pointer;
+            margin-left: 15px;
+            position: relative;
+        }
+        .picker {
+            position: absolute;
+            top: 60px;
+            right: 0;
+        }
+    }
+}
+
+.post_preview {
+    margin-top: 15px;
+    border-radius: 3px;
+    margin-left: 15px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    img {
+        width: 200px;
+    }
+    &-delete {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: var(--color-active);
+        cursor: pointer;
+        padding: 3px;
+        background-color: var(--color-swapi);
+        border-radius: 3px;
+    }
+}

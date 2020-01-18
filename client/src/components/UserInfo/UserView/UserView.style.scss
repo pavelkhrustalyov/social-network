@@ -1,0 +1,9 @@
+.avatar_form {
+    text-align: center;
+    &-actions {
+        display: flex;
+        button {
+            margin-right: 5px;
+        }
+    }
+}

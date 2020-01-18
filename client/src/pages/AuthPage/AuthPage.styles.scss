@@ -1,0 +1,20 @@
+.auth-page {
+    width: 1200px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.account_question {
+    text-align: center;
+    color: var(--color-main-text);
+    margin-bottom: 10px;
+    span {
+        color: var(--color-date);
+        margin-left: 8px;
+        cursor: pointer;
+    }
+}

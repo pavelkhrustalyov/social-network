@@ -1,0 +1,38 @@
+.customTextArea {
+    &__field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        margin-bottom: 3px;
+    }
+
+    &__textarea {
+        caret-color: var(--color-main-text);
+        
+        &::-webkit-input-placeholder { 
+            color: var(--color-icon);
+          }
+          
+        &::-ms-input-placeholder { 
+            color: var(--color-icon);
+        }
+          
+        &::placeholder {
+            color: var(--color-icon);
+        }
+
+        color: var(--color-main-text);
+
+        background-color: var(--color-bg);
+        border-radius: 3px;
+        padding: 14px;
+        border: 1px solid var(--color-line);
+        outline: none;
+        font-size: 18px;
+        &:focus {
+            box-shadow: 0px 0px 5px -1px var(--color-shadow);
+        }
+    }
+};

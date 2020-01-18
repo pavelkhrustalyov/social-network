@@ -1,0 +1,28 @@
+.friends {
+    &__heading {
+        margin-bottom: 10px;
+        display: flex;
+        color: var(--primary-one);
+        span {
+            color: var(--color-main-text);
+        }
+        border-bottom: 1px solid var(--color-line);
+        padding: 10px 0;
+        &-all {
+            margin-left: auto;
+            cursor: pointer;
+            color: var(--color-main-text);
+        }
+    }
+    align-self: flex-start;
+        &__wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            & > * {
+                margin-left: 10px;
+                margin-bottom: 20px;
+            }
+        }
+}

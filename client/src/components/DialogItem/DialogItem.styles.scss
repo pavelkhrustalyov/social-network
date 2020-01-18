@@ -1,0 +1,43 @@
+.dialog-item {
+    display: flex;
+    align-items: center;
+    transition: 0.2s all;
+    border-bottom: 1px solid var(--color-line);
+    cursor: pointer;
+    padding: 10px;
+    text-decoration: none;
+    &.selected {
+        background-color: var(--primary-one);
+        .dialog-item_userdata-name {
+            color: var(--color-support-text);
+        }
+        .dialog-item_userdata {
+            &-text {
+                color: inherit;
+            }
+        }
+    }
+    &:last-child {
+        border-bottom: none;
+    }
+    &:hover {
+        background-color: var(--primary-one);
+    }
+
+    &_userdata {
+        margin: 0 15px;
+        display: flex;
+        flex-direction: column;
+        color: var(--color-support-text);
+        &-name {
+            color: var(--color-main-text);
+            span {
+                margin-left: 10px;
+                color: var(--color-icon);
+            }
+        }
+        &-text {
+            color: var(--color-main-text);
+        }
+    }
+}

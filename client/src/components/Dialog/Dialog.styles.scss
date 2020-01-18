@@ -1,0 +1,27 @@
+.dialogs_wrap {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 350px;
+    position: relative;
+}
+.dialogs {
+    margin-bottom: auto;
+    height: 539px;
+    overflow: auto;
+    position: relative;
+}
+
+.empty_dialogs {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: var(--color-icon);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    .fas {
+        font-size: 40px;
+    }
+}

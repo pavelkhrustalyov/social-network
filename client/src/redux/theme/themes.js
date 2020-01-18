@@ -1,0 +1,41 @@
+export const darkTheme = {
+    '--primary-one': 'rgb(52,117,165)',
+    '--primary-two': 'rgb(35,56,68)',
+    '--color-active': 'rgb(222, 250, 67)',
+    '--color-main': 'rgb(41,57,62)',
+    '--color-bg': 'rgb(30, 35, 47)',
+    '--color-btn-unfollow': 'rgb(0, 191, 255)',
+    '--color-shadow': 'rgb(0, 0, 0)',
+    '--color-line': 'rgb(41,57,62)',
+    '--color-main-text': 'rgb(255,255,255)',
+    '--color-icon': 'rgb(204, 204, 204)',
+    '--color-support-text': 'rgb(255, 255, 255)',
+    '--color-date': 'rgb(128, 128, 128)',
+    '--color-icon-special': 'rgb(255, 192, 203)',
+    '--color-danger': 'rgb(216, 88, 88)',
+    '--color-my-message': 'rgb(52,112,165)',
+    '--color-success': 'rgb(52,112,165)',
+    '--color-swapi': 'rgb(9, 11, 24)',
+    '--color-alert-success': 'rgb(52,112,165)'
+};
+
+export const lightTheme = {
+    '--primary-one': 'rgba(86,67,250,1)',
+    '--primary-two': 'rgba(85,197,122,1)',
+    '--color-active': 'rgb(222, 250, 67)',
+    '--color-main': 'rgb(255, 255, 255)',
+    '--color-bg': 'rgb(239,243,245)',
+    '--color-btn-unfollow': 'rgb(0, 191, 255)',
+    '--color-shadow': 'rgb(0, 0, 0)',
+    '--color-line': 'rgb(239,243,245)',
+    '--color-main-text': 'rgb(0,0,0)',
+    '--color-support-text': 'rgb(255, 255, 255)',
+    '--color-icon': 'rgb(204, 204, 204)',
+    '--color-date': 'rgb(128, 128, 128)',
+    '--color-icon-special': 'rgb(255, 192, 203)',
+    '--color-danger': 'rgb(216, 88, 88)',
+    '--color-my-message': 'rgb(239,254,222)',
+    '--color-success': 'rgb(52,112,165)',
+    '--color-swapi': 'rgb(9, 11, 24)',
+    '--color-alert-success': 'rgba(85,197,122,1)'
+};

@@ -1,0 +1,6 @@
+export const START_DIALOG_ITEMS = 'START_DIALOG_ITEMS';
+export const GET_DIALOGS = 'GET_DIALOGS';
+export const SET_CURRENT_DIALOG_ID = 'SET_CURRENT_DIALOG_ID';
+export const SET_FILTER = 'SET_FILTER';
+export const OPEN_DIALOG = 'OPEN_DIALOG';
+export const CREATE_DIALOG = 'CREATE_DIALOG';

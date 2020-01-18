@@ -1,0 +1,22 @@
+.message-create {
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        input {
+            width: 550px;
+        }
+    }
+    &_picker {
+        position: absolute;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+        z-index: 1000;
+    }
+    .fas {
+        font-size: 25px;
+        color: var(--color-icon);
+        cursor: pointer;
+    }
+};

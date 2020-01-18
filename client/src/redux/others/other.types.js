@@ -1,0 +1,2 @@
+export const SET_SEARCH_VISIBLE = 'SEARCH_VISIBLE';
+export const OPEN_MODAL = 'OPEN_MODAL';

@@ -1,0 +1,22 @@
+.alert {
+    padding: 10px;
+    color: var(--color-support-text);
+    display: inline-block;
+    position: fixed;
+    right: 0;
+    z-index: 10000;
+
+    &.many {
+        position: static;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &.success {
+        background-color: var(--color-alert-success);
+    }
+
+    &.error {
+        background-color: var(--color-danger);
+    }
+}

@@ -1,0 +1,25 @@
+.btn {
+    background-color: var(--primary-one);
+    color: var(--color-support-text);
+    padding: 14px;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+    transition: 0.2s background-color;
+    transition: 0.2s all;
+    &.unfollow {
+        background-color: var(--color-btn-unfollow);
+        &:hover {
+            background-color: var(--primary-two);
+        }
+    }
+    &:hover {
+        transform: rotate(2deg);
+        background-color: var(--primary-two);
+    }
+    &:active {
+        transform: translateY(2px);
+    }
+}

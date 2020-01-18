@@ -1,0 +1,26 @@
+.friend-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    &.inline {
+        flex-direction: row;
+        transition: 0.3s all;
+        padding: 20px;
+        &:last-child {
+            padding-bottom: 0px;
+        }
+        &:hover {
+            background-color: var(--color-icon);
+        }
+    }
+    a {
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--color-main-text);
+        transition: 0.2s all;
+        &:hover {
+            color: var(--color-active);
+        }
+    }
+}
