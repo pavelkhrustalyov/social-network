@@ -9,9 +9,17 @@ exports.createDialog = async (req, res, next) => {
         return next(new ErrorResponse('Сообщение не может быть пустым!', 400));
     }
     try {
-        let dialog = await Dialog.findOne({
-            author: req.user.id,
-            partner: partnerId
+        let dialog = await Dialog.findOne({ $or: [
+            {
+                author: req.user.id,
+                partner: partnerId
+            },
+            {
+                author: partnerId,
+                partner: req.user.id
+            },
+        ]
+          
         });
 
         let message;
