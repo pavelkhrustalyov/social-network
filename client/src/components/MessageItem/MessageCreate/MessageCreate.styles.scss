@@ -5,10 +5,25 @@
         justify-content: space-around;
         input {
             width: 500px;
+            @media(max-width: 768px) {
+                width: 300px;
+            }
+            @media(max-width: 450px) {
+                width: 200px;
+            }
+            @media(max-width: 320px) {
+                width: 100px;
+            }
+        }
+        button {
+            @media(max-width: 450px) {
+                font-size: 12px;
+            }
         }
     }
     &_picker {
         position: absolute;
+        z-index: 10000;
         top: 0;
         right: 0;
         overflow: hidden;

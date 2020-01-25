@@ -18,9 +18,6 @@ const DialogContainer = ({
         getDialogs();
         socket.on('DIALOG_CREATED', getDialogs);
         socket.on('CREATE_MESSAGE', getDialogs);
-        socket.on('DIALOGS:JOIN', (dialogId) => {
-            console.log(dialogId);
-        });
         socket.on('MESSAGES_READED', (data) => {
             updateReadedStatus(data);
         })

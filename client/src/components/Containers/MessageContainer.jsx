@@ -37,11 +37,9 @@ const MessageContainer = ({
         const getMessage = (data) => {
             createMessage(data, dialogId);
         }
-        if (dialogId) {
-            loadedMessages(dialogId, limit);
-            socket.on('CREATE_MESSAGE', getMessage);
-            socket.emit('DIALOGS:JOIN', dialogId);
-        }
+        loadedMessages(dialogId, limit);
+        socket.on('CREATE_MESSAGE', getMessage);
+        socket.emit('DIALOGS:JOIN', dialogId);
 
         return () => {
             socket.removeListener('CREATE_MESSAGE', getMessage);
@@ -61,9 +59,8 @@ const MessageContainer = ({
     );
 };
 
-const mapStateToProps = ({ messages, dialogs, auth }) => ({
+const mapStateToProps = ({ messages, auth }) => ({
     messages: messages.messages,
-    dialogId: dialogs.currentDialogId,
     user: auth.user,
     limit: messages.limit,
 });

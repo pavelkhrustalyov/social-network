@@ -15,7 +15,7 @@
         height: 200px;
         top: 10%;
         @media (max-width: 768px) {
-            left: 25%;
+            left: 50%;
         }
         @media (max-width: 450px) {
             top: 200px;
@@ -28,21 +28,27 @@
         height: 500px;
     }
     &.big {
-        height: 600px;
+        min-height: 600px;
         width: 600px;
         top: 400px;
         overflow: auto;
         @media (max-width: 768px) {
-            height: 500px;
+            height: 300px;
+            width: 500px;
             left: 50%;
             transform: translate(-50%);
         }
-
         @media (max-width: 320px) {
-            height: 500px;
+            height: 200px;
             width: 300px;
             left: 50%;
-            transform: translate(-50%);
+            top: 20%;
+        }
+        @media (max-width: 768px) {
+            height: 200px;
+            width: 350px;
+            left: 50%;
+            top: 20%;
         }
     }
     &_overlay {

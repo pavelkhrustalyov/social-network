@@ -12,7 +12,8 @@ const Dialog = ({ dialogs }) => {
             <MainBg noIndentation>
                 <div className="dialogs">
                     {
-                        dialogs && dialogs.length === 0 ? <p className="empty_dialogs">
+                        dialogs && dialogs.length === 0 ?
+                        <p className="empty_dialogs">
                             <i className="fas fa-inbox"></i>
                         Диалогов нет</p>
                         : dialogs.map(dialog => (

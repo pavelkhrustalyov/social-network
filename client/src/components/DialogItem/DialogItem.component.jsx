@@ -26,7 +26,7 @@ const DialogItem = ({
         <Link className={classNames("dialog-item", {
             "selected": dialog._id === dialogId
         })}
-            to={`/dialogs/${dialog._id}`}
+            to={`/${dialog._id}/messages`}
             onClick={() => setDialogId(dialog._id)}>
             <div className="dialog-item_avatar">
                 <Avatar isOnline={partner.isOnline}

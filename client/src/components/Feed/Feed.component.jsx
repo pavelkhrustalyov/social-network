@@ -8,7 +8,7 @@ const Feed = ({ feed }) => {
         <div className="feed">
             <h3>Новости на основе ваших подписок:</h3>
             {
-               feed.length > 0 ? 
+               feed !== null && feed.length > 0 ? 
                feed.map(feedItem => (
                     <FeedItem 
                         key={feedItem._id}

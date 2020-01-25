@@ -2,17 +2,21 @@ import React from 'react';
 import './DialogPage.styles.scss';
 
 import DialogContainer from '../../components/Containers/DialogContainer';
-import MessageContainer from '../../components/Containers/MessageContainer';
 import Container from '../../components/Grid/Container.component';
-
+import Row from '../../components/Grid/Row.component';
+import Col from '../../components/Grid/Col.component';
+ 
 const DialogPage = () => {
     return (
-        <Container>
-            <div className="dialog-page">
-                <DialogContainer />
-                <MessageContainer />
-            </div>
-        </Container>
+        <div className="dialog-page">
+            <Container>
+                <Row center>
+                    <Col xs={12} md={9} lg={9}>
+                        <DialogContainer />
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     );
 }
 

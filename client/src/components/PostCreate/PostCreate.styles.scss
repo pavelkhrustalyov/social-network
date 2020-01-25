@@ -50,6 +50,9 @@
             position: relative;
             @media(max-width: 500px) {
                 margin-bottom: 20px;
+                &.fa-laugh-wink {
+                    display: none;
+                }
             }
         }
         .picker {

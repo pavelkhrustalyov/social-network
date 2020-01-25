@@ -8,7 +8,7 @@ import {
 const initial_state = {
     dialogs: [],
     loading: false,
-    currentDialogId: window.location.pathname.split('dialogs/')[1],
+    currentDialogId: null,
     filter: '',
     dialogOpened: false
 };

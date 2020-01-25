@@ -17,7 +17,6 @@ const SearchPeople = ({ getAllUsers, setSearchVisible }) => {
                 onChange={(e) => getAllUsers(e.target.value.trim())}
                 onFocus={() => setSearchVisible(true)}
                 placeholder="Поиск пользователя..."
-                type="search"
             >
             </DebounceInput>
         </div>

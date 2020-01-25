@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './MessageCreate.styles.scss';
 
@@ -9,17 +9,20 @@ import { connect } from 'react-redux';
 import { sendMessageOnServer } from '../../../redux/messages/messages.actions';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
+import { withRouter } from 'react-router-dom';
+
 const MessageCreate = ({
     theme,
-    currentId,
-    sendMessageOnServer
+    sendMessageOnServer,
+    match
     }) => {
+
     const [ message, setMessage ] = useState('');
 
     const [ activeSmiles, setActiveSmiles ] = useState(false);
 
     const messageData = {
-        dialogId: currentId,
+        dialogId: match.params.dialogId,
         text: message
     }
     const onChangeFormData = (e) => {
@@ -30,15 +33,6 @@ const MessageCreate = ({
         setMessage(message + smile.native);
     };
 
-    const onInput = () => {
-        
-    };
-
-    useEffect(() => {
-        onInput();
-    }, []);
-
-    
     const onSubmitForm = (e) => {
         e.preventDefault();
         if (message.trim() === '') {
@@ -58,7 +52,6 @@ const MessageCreate = ({
                         placeholder="Напишите сообщение"
                         onChange={onChangeFormData}
                         value={message}
-                        onFocus={onInput}
                     />
                     <i className="fas fa-laugh-wink"
                         onClick={() => setActiveSmiles(true)}>
@@ -80,12 +73,11 @@ const MessageCreate = ({
     );
 };
 
-const mapStateToProps = ({ dialogs, theme, auth }) => ({
-    currentId: dialogs.currentDialogId,
+const mapStateToProps = ({ theme, auth }) => ({
     theme: theme.theme,
     user: auth.user,
 });
 
 export default connect(mapStateToProps, 
     { sendMessageOnServer }
-)(MessageCreate);
+)(withRouter(MessageCreate));

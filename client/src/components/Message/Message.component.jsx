@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './Message.styles.scss';
 import MessageItem from '../MessageItem/MessageItem.component';
@@ -33,12 +33,7 @@ const Message = ({
                             { ...item }
                         /> }
                     )
-                    : !messages && !messages.messages && !messages.messages.length ?
-                    <Preloader />
-                    : <p className="select_dialog">
-                        <i className="fas fa-hand-point-left"></i>
-                        <span>Выберите диалог</span>
-                    </p>
+                    : <Preloader />
                 }
             </div>
             {
