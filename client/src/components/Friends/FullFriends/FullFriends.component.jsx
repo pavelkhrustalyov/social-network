@@ -10,12 +10,13 @@ const FullFriends = ({ friends }) => {
     return (
         <Modal big>
             <div className="full-friends">
+                <h1>Все друзья:</h1>
                 {
                    friends && friends.length > 0 ? friends.map(friend => {
                         return (
                             <div key={friend._id} className="full-friends_item">
                                 <Link to={`/user/${friend._id}`}>
-                                    <Avatar middle img={friend.avatar} />
+                                    <Avatar isOnline={friend.isOnline} middle img={friend.avatar} />
                                 </Link>
                                 <div className="name">{friend.fullName}</div>
                             </div>

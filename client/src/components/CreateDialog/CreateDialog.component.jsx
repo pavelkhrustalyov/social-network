@@ -26,7 +26,7 @@ const CreateDialog = ({ userId, createDialog, setShowModal }) => {
             <Modal small>
                 <div className="create-dialog">
                     <form onSubmit={createDialogHandler}>
-                        <CustomTextArea 
+                        <CustomTextArea
                             onChange={onTextHandler}
                             value={text} />
                         <div className="create-dialog_controls">

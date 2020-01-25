@@ -3,10 +3,14 @@ import React from 'react';
 import './CustomButton.styles.scss';
 import classNames from 'classnames';
 
-const CustomButton = ({ children, unfollow, ...otherProps }) => {
+const CustomButton = ({ children, unfollow, info, disabled, ...otherProps }) => {
     return (
-        <button {...otherProps} className={classNames("btn", {
-            "unfollow": unfollow
+        <button 
+            disabled={disabled} {...otherProps} 
+            className={classNames("btn", {
+            "unfollow": unfollow,
+            "user-info": info,
+            "disabled": disabled
         })}>{children}</button>
     );
 }

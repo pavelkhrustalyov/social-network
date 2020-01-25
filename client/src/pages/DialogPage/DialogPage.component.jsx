@@ -3,13 +3,16 @@ import './DialogPage.styles.scss';
 
 import DialogContainer from '../../components/Containers/DialogContainer';
 import MessageContainer from '../../components/Containers/MessageContainer';
+import Container from '../../components/Grid/Container.component';
 
 const DialogPage = () => {
     return (
-        <div className="dialog-page">
-            <DialogContainer />
-            <MessageContainer />
-        </div>
+        <Container>
+            <div className="dialog-page">
+                <DialogContainer />
+                <MessageContainer />
+            </div>
+        </Container>
     );
 }
 

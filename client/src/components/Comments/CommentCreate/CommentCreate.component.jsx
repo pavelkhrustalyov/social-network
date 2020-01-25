@@ -3,14 +3,16 @@ import React, { useState } from 'react';
 import './CommentCreate.styles.scss';
 import CustomInput from '../../CustomInput/CustomInput.component';
 import CustomButton from '../../CustomButton/CustomButton.component';
-import { createComment } from '../../../redux/users/users.actions';
-import { connect } from 'react-redux';
 
-const CommentCreate = ({ postId, createComment }) => {
+
+const CommentCreate = ({ createComment, postId }) => {
     const [ comment, setComment ] = useState('');
 
     const onSubmitComment = (e) => {
         e.preventDefault();
+        if (comment.trim() === '') {
+            return;
+        }
         createComment({ postId, text: comment });
         setComment('');
     };
@@ -31,5 +33,5 @@ const CommentCreate = ({ postId, createComment }) => {
         </div>
     );
 }
- 
-export default connect(null, { createComment })(CommentCreate);
+
+export default CommentCreate;

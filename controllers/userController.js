@@ -5,16 +5,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const fs = require('fs');
 
-// const multerStorage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, process.env.PATH_UPLOAD_AVATAR);
-//     },
-//     filename: (req, file, cb) => {
-//         const ext = file.mimetype.split('/')[1];
-//         cb(null, `avatar_${req.user._id}-${Date.now()}.${ext}`);
-//     }
-// });
-//
+
 const multerStorage = multer.memoryStorage()
 
 const multerFilter = (req, file, cb) => {
@@ -66,7 +57,7 @@ exports.avatarUpload = async (req, res, next) => {
 exports.me = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id)
-            .select('firstName secondName avatar birthday sex city about');
+            .select('firstName secondName avatar birthday sex city about carpet last_seen');
         if (!user) {
             return next(new ErrorResponse('Вы не авторизованы', 401));
         }
@@ -82,14 +73,14 @@ exports.getUser = async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id)
             .select('-password')
-            .populate('followers', 'firstName fullName avatar')
-            .populate('signed', 'firstName fullName avatar')
+            .populate('followers', 'firstName fullName avatar last_seen')
+            .populate('signed', 'firstName fullName avatar last_seen')
             .populate({
                 path: 'posts', populate: [
-                    { path: 'user', select: 'fullName avatar'},
-                    { path: 'likes', select: 'fullName avatar'},
+                    { path: 'user', select: 'fullName avatar last_seen'},
+                    { path: 'likes', select: 'fullName avatar last_seen'},
                     { path: 'comments', populate: [
-                        { path: 'author', select: 'fullName avatar' }
+                        { path: 'author', select: 'fullName avatar last_seen' }
                     ]}
                 ]
             })
@@ -152,6 +143,39 @@ exports.editUser = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+
+exports.getCarpets = (req, res, next) => {
+    fs.readdir('public/uploads/carpets', function(err, items) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        let filterArray = [];
+        for (let i = 0; i < items.length; i++) {
+            const ext = items[i].split('.')[1];
+            if (ext === 'jpg' || ext === 'jpeg') {
+                filterArray = [...filterArray, items[i]];
+            }
+        }
+        res.status(200).json(filterArray);
+    });
+};
+
+exports.setCarpets = async (req, res, next) => {
+    const { carpet } = req.params;
+    const user = await User.findOneAndUpdate(
+        { _id: req.user.id },
+        { carpet },
+        { new: true }
+    );
+
+    if (!user) {
+        return next(new ErrorResponse('Пользователь не найден!', 400));
+    }
+
+    await user.save();
+    res.status(201).json(user.carpet);
 };
 
 

@@ -5,7 +5,7 @@ const CustomTextArea = ({ label, ...otherProps }) => {
     return (
         <div className="customTextArea__field">
             {label && <label className="customTextArea__label">{label}</label>}
-            <textarea 
+            <textarea
                 className="customTextArea__textarea"
                 {...otherProps}
             >

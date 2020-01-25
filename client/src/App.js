@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import DialogPage from './pages/DialogPage';
 import AuthPage from './pages/AuthPage';
 import EditUserPage from './pages/EditUserPage';
+import FeedPage from './pages/FeedPage';
+
 
 //components
 import Header from './components/Header/Header.component';
@@ -24,6 +26,7 @@ const App = ({ user }) => {
        <PrivateRoute exact path="/user/:id" component={HomePage} />
        <PrivateRoute path="/dialogs" component={DialogPage} />
        <PrivateRoute exact path="/edit-user" component={EditUserPage} />
+       <PrivateRoute exact path="/feed" component={FeedPage} />
        <Route render={() => <h1>404</h1>} />
       </Switch>
     </div>

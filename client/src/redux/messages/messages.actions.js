@@ -1,12 +1,13 @@
 import {
     LOADED_MESSAGES,
     CREATE_MESSAGE,
-    SET_LIMIT_MESSAGES
+    SET_LIMIT_MESSAGES,
 } from './messages.actionTypes';
+
 import { setAlert } from '../alert/alert.actions';
 import axios from 'axios';
 
-export const loadedMessages = (id, limit = 10) => async (dispatch) => {
+export const loadedMessages = (id, limit = 25) => async (dispatch) => {
     try {
         const res = await axios.get(`/api/dialogs/messages/${id}?limit=${limit}`);
         dispatch({

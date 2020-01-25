@@ -3,31 +3,28 @@ import React, { useEffect } from 'react';
 import './Message.styles.scss';
 import MessageItem from '../MessageItem/MessageItem.component';
 import MessageCreate from '../MessageItem/MessageCreate/MessageCreate';
+import Preloader from '../Preloader/Preloader.component';
 
 const Message = ({
     dialogId,
     messages,
-    messageRef,
-    scroll,
     currentUser,
     setLimit,
-    limit }) => {
-
-    useEffect(() => {
-        scroll();
-    }, [scroll]);
+    limit,
+    messagesEndRef }) => {
 
     return (
         <div className="message_wrap">
             {
                 messages && messages.count > limit ?
                 (<span onClick={setLimit} className="messages-loadmore">
-                    Загрузить еще 10 сообщений
+                    Загрузить предыдущие 10 сообщений
                 </span>) : null
             }
-            <div ref={messageRef} className="messages">
+            <div ref={messagesEndRef} className="messages">
                 {
-                    currentUser && messages ?
+                    currentUser && messages.messages &&
+                    messages.messages !== null ?
                     messages.messages.map(
                         item => {
                         return <MessageItem
@@ -36,6 +33,8 @@ const Message = ({
                             { ...item }
                         /> }
                     )
+                    : !messages && !messages.messages && !messages.messages.length ?
+                    <Preloader />
                     : <p className="select_dialog">
                         <i className="fas fa-hand-point-left"></i>
                         <span>Выберите диалог</span>

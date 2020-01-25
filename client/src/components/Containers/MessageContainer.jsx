@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import {
     loadedMessages,
     createMessage,
-    setLimitMessages
+    setLimitMessages,
 } from '../../redux/messages/messages.actions';
 import socket from '../../socket/socket.io';
+
 
 const MessageContainer = ({
     messages,
@@ -15,16 +16,18 @@ const MessageContainer = ({
     user,
     createMessage,
     limit,
-    setLimitMessages
+    setLimitMessages,
 }) => {
-    const messageRef = useRef(null);
 
-    let scrollToLastMessage = () => {
-        const scrollHeight = messageRef.current.scrollHeight;
-        const clientHeight = messageRef.current.clientHeight;
-        const maxScrollTop = scrollHeight - clientHeight;
-        messageRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    const messagesEndRef = useRef()
+
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
     }
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
     const setLimit = () => {
         setLimitMessages(10);
@@ -34,20 +37,21 @@ const MessageContainer = ({
         const getMessage = (data) => {
             createMessage(data, dialogId);
         }
+        if (dialogId) {
+            loadedMessages(dialogId, limit);
+            socket.on('CREATE_MESSAGE', getMessage);
+            socket.emit('DIALOGS:JOIN', dialogId);
+        }
 
-        loadedMessages(dialogId, limit);
-
-        socket.on('CREATE_MESSAGE', getMessage);
-
-        return () => socket.removeListener('CREATE_MESSAGE', getMessage);
+        return () => {
+            socket.removeListener('CREATE_MESSAGE', getMessage);
+        }
 
     }, [ dialogId, limit ]);
 
-
     return (
         <Message
-            scroll={scrollToLastMessage}
-            messageRef={messageRef}
+            messagesEndRef={messagesEndRef}
             messages={messages}
             currentUser={user}
             dialogId={dialogId}
@@ -67,5 +71,6 @@ const mapStateToProps = ({ messages, dialogs, auth }) => ({
 export default connect(mapStateToProps, {
     setLimitMessages,
     loadedMessages,
-    createMessage })
+    createMessage,
+})
 (MessageContainer);

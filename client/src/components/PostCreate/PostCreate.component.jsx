@@ -51,6 +51,7 @@ const PostCreate = ({ createPost, theme }) => {
                 <form className="post-create__form"
                     onSubmit={onSubmitForm}>
                     <CustomTextArea
+                        rows={1}
                         type="text"
                         name="text"
                         onChange={(e) => setText(e.target.value)}
@@ -81,7 +82,7 @@ const PostCreate = ({ createPost, theme }) => {
                             name="postImg"
                             type="file"
                             id="file"
-                            icon
+                            icon="true"
                             label="Выбрать файл"
                             onChange={onChangeFile}
                         />

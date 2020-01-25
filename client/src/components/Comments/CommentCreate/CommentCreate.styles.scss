@@ -4,9 +4,13 @@
     &_form {
         input {
             width: 50%;
+            margin-bottom: 20px;
+            @media (max-width: 320px) {
+                width: 80%;
+            }
         }
     
-        @media (min-width: 1024px) {
+        @media (min-width: 1025px) {
             button {
                 display: none;
             }

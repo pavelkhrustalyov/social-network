@@ -1,5 +1,5 @@
 const { model, Schema } = require('mongoose');
-
+const differenceInMinutes = require('date-fns/differenceInMinutes');
 const UserSchema = new Schema({
     email: {
         type: String,
@@ -24,6 +24,7 @@ const UserSchema = new Schema({
         type: String,
         required: [true, 'Please add a firstName']
     },
+    last_seen: Date,
     secondName: {
         type: String,
         required: [true, 'Please add a secondName']
@@ -43,7 +44,19 @@ const UserSchema = new Schema({
     posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'
-    }]
+    }],
+    carpet: {
+        type: String,
+        default: 'carpet-3.jpg'
+    }
+});
+
+UserSchema.virtual('isOnline').get(function() {
+    return differenceInMinutes(new Date(), this.last_seen) < 1;
+});
+
+UserSchema.set('toJSON', {
+    virtuals: true,
 });
 
 

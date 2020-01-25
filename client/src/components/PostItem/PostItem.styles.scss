@@ -1,11 +1,12 @@
 .post_item {
     padding: 20px;
     margin-bottom: 20px;
-    border-bottom: 1px solid var(--color-bg);
     border-radius: 3px;
     position: relative;
     background-color: var(--color-main);
     color: var(--color-main-text);
+    box-shadow: 0px 0px 2px -1px var(--color-shadow);
+
     &:last-child {
         margin-bottom: 0;
         border-bottom: none;
@@ -13,8 +14,8 @@
     }
     &-img {
         overflow: hidden;
-        width: 600px;
         margin: 0 auto;
+        text-align: center;
         img {
             background-position: center;
             background-repeat: no-repeat;
@@ -22,27 +23,31 @@
         }
     }
     &-text {
-        font-size: 18px;
+        font-size: 15px;
     }
     &-utils {
         display: flex;
         align-items: center;
         padding-top: 20px;
         margin-bottom: 30px;
+        position: relative;
+        &:hover {
+            .likes-view {
+                display: flex;
+            }
+        }
     }
     &-likes, &-comments {
+        font-size: 12.9px;
+
         margin-right: 30px;
         .fa-heart {
-            position: relative;
             &:hover {
                 color: var(--color-main-text);
-                .likes-view {
-                    display: flex;
-                }
             }
         }
         .fas {
-            font-size: 30px;
+            font-size: 18px;
             color: var(--color-icon-special);
             transition: 0.2s color;
             cursor: pointer;
@@ -59,7 +64,6 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid var(--color-line);
-        padding-bottom: 12px;
         margin-bottom: 20px;
         &_data {
             margin-left: 20px;
@@ -74,7 +78,7 @@
     &-delete {
         margin-left: auto;
         .fas {
-            font-size: 30px;
+            font-size: 18px;
             color: var(--color-icon-special);
             &:hover {
                 color: var(--color-danger);

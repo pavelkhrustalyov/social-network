@@ -5,6 +5,7 @@ const path = require('path');
 const cors = require('cors');
 dotenv.config({ path: './config/config.env' });
 const db = require('./db/db-connect');
+// require routes
 const compression = require('compression');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -12,6 +13,9 @@ const postRoutes = require('./routes/postRoutes');
 const followRoutes = require('./routes/followRoutes');
 const dialogRoutes = require('./routes/dialogRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const feedRoutes = require('./routes/feedRoutes');
+
+const morgan = require('morgan');
 
 const app = express();
 app.use(cors());
@@ -26,17 +30,19 @@ db();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use('/api/auth', authRoutes);
+
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/follow', followRoutes);
 app.use('/api/dialogs/', dialogRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/feed', feedRoutes);
 
 app.use(errorHandler);
 app.use(compression());
@@ -50,11 +56,18 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
+
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT);
 
 global.io = require('socket.io')(server);
 
-process.on('unhandledRejection', (err, promise) => {
-    console.log(`Error: ${err.message}`.red);
+io.on('connection', function(socket) {
+    socket.on('DIALOGS:JOIN', (dialogId) => {
+      socket.join(dialogId);
+    });
 });
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
+}); 

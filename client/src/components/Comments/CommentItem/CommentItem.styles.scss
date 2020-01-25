@@ -4,6 +4,9 @@
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    @media (max-width: 1023px) {
+        padding: 0;
+    }
     &:last-child {
         margin-bottom: 0px;
         border-bottom: none;
@@ -12,7 +15,6 @@
         color: var(--color-icon-special);
         cursor: pointer;
         margin-left: auto;
-        margin-top: auto;
     }
     &-user {
         display: flex;
@@ -25,6 +27,9 @@
     &-date {
         color: var(--color-icon);
         margin-left: 15px;
+        @media (max-width: 1023px) {
+            display: none;
+        }
     }
 
     &-text {

@@ -1,0 +1,9 @@
+.carpet-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_img {
+        height: 100px;
+    }
+    margin-bottom: 10px;
+}

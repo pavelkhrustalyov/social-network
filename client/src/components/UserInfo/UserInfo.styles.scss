@@ -1,21 +1,18 @@
 .user-info {
-    margin-bottom: 4px;
     position: relative;
     color: var(--color-main-text);
-
+    &__about {
+        margin: 10px 0px;
+    }
     &__utils {
-        display: flex;
-        align-items: center;
-        &-status {
-            color: var(--color-icon);
-            font-size: 20px;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-        }
         &-heading {
-            font-size: 40px;
-            margin-left: 20px;
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 55px;
+            color: var(--color-support-text);
+            @media(max-width: 460px) {
+                font-size: 20px;
+            }
             span {
                 font-size: 14px;
                 color: var(--color-main-text);
@@ -32,12 +29,16 @@
         list-style-type: none;
         padding: 0;
         margin-left: 20px;
+        margin: 0;
     }
 
     &__item {
         font-size: 19px;
+        color: var(--color-icon);
+        font-size: 15px;
         span {
             margin-left: 10px;
+            color: var(--color-main-text);
         }
         &:last-child {
             border-top: 1px solid var(--color-line);

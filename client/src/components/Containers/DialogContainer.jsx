@@ -2,23 +2,35 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Dialog from '../Dialog/Dialog.component';
-import { getDialogs } from '../../redux/dialogs/dialogs.actions';
+import { getDialogs, updateReadedStatus } from '../../redux/dialogs/dialogs.actions';
 import Preloader from '../Preloader/Preloader.component';
 import socket from '../../socket/socket.io';
 
-const DialogContainer = ({ getDialogs, dialogs, loading, user }) => {
-    useEffect(() => {
+const DialogContainer = ({
+    getDialogs,
+    dialogs,
+    loading,
+    user,
+    updateReadedStatus
+}) => {
 
+    useEffect(() => {
         getDialogs();
         socket.on('DIALOG_CREATED', getDialogs);
         socket.on('CREATE_MESSAGE', getDialogs);
-        
+        socket.on('DIALOGS:JOIN', (dialogId) => {
+            console.log(dialogId);
+        });
+        socket.on('MESSAGES_READED', (data) => {
+            updateReadedStatus(data);
+        })
         return () => {
             socket.removeListener('DIALOG_CREATED', getDialogs);
             socket.removeListener('CREATE_MESSAGE', getDialogs);
         };
 
     }, [getDialogs]);
+
     return (
         <>
             {
@@ -51,11 +63,11 @@ const mapStateToProps = ({ dialogs: { dialogs, filter, loading }, auth: { user }
     dialogs: user && dialogs ? filteredDialogs(dialogs, filter, user) : [],
     loading,
     filter,
-    user
+    user,
 });
 
 DialogContainer.propTypes = {
     dialogs: PropTypes.array,
 }
 
-export default connect(mapStateToProps, { getDialogs })(DialogContainer);
+export default connect(mapStateToProps, { getDialogs, updateReadedStatus })(DialogContainer);

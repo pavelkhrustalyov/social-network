@@ -3,7 +3,7 @@ import './Comments.styles.scss';
 import CommentItem from './CommentItem/CommentItem.component';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-const Comments = ({ comments }) => {
+const Comments = ({ comments, deleteComment }) => {
     return (
         <>
            {
@@ -15,7 +15,11 @@ const Comments = ({ comments }) => {
                 >
                     {
                         comments.map(
-                        comment => <CommentItem key={comment._id} { ...comment }/>
+                        comment => <CommentItem
+                            deleteComment={deleteComment}
+                            key={comment._id}
+                            { ...comment }
+                        />
                     )}
                 </CSSTransitionGroup>
                 

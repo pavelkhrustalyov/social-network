@@ -1,11 +1,7 @@
 .post {
-    margin-top: 4px;
-    border-radius: 0 3px 3px 0;
-    color: var(--color-main-text);
-    &.scroll {
-        height: calc(800px - 72px);
-        // overflow: scroll;
-    }
+  h3 {
+      color: var(--color-main-text);
+  }
 }
 
 .posts-enter {

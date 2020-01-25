@@ -1,25 +1,36 @@
 .header {
-    box-shadow: 0px 0px 3px -1px var(--color-shadow);
+    box-shadow: 0px 0px 7px -1px var(--color-shadow);
     background: var(--primary-two);
     width: 100%;
-    margin-bottom: 20px;
+    z-index: 10;
     position: relative;
     font-size: 18px;
     display: flex;
-    padding: 10px 0;
+    padding: 7px 30px;
     align-items: center;
     color: var(--color-support-text);
-
+    @media(min-width: 645px) {
+        padding: 0px 7px;
+    }
+    .burger {
+        display: block;
+        @media(min-width: 645px) {
+            display: none;
+        }
+    }
     &__logo {
         width: 80px;
         margin-left: 40px;
         font-size: 30px;
         color: var(--color-support-text);
         text-transform: uppercase;
+        margin-right: 20px;
+        @media(min-width: 645px) {
+            margin-right: 0;
+        }
         &-link {
             text-decoration: none;
             color: var(--color-support-text);
-            
             transition: 0.2s color;
             .fas {
                 font-size: 40px;
@@ -32,24 +43,64 @@
     &__list {
         list-style-type: none;
         margin: 0;
-        padding: 0 20px;
+        padding: 10px 20px;
+        position: absolute;
         display: flex;
-        align-items: center;
-        margin-left: auto;
+        flex-direction: column;
+        top: 55px;
+        left: 0;
+        background-color: rgba(0,0,0, 0.9);
+        z-index: 100;
+        width: 100%;
+        @media(min-width: 645px) {
+            display: flex;
+            flex-direction: row;
+            padding: 0 20px;
+            position: static;
+            align-items: center;
+            background-color: var(--primary-two);
+        }
 
         &-item {
             margin-right: 30px;
+            border-bottom: 1px solid var(--color-line);
+            padding: 10px 0;
+            position: relative;
+            &.search {
+                @media(min-width: 645px) {
+                    margin-left: auto;
+                }
+            }
+            &.user {
+                display: flex;
+                align-items: center;
+            }
+
+            &:last-child {
+                padding: 0;
+                border-bottom: none;
+            }
+            &:first-child {
+                padding: 0;
+                border-bottom: none;
+            }
+
+            @media(min-width: 645px) {
+                padding: 0;
+                border-bottom: none;
+            }
+
         }
         &-link {
             text-decoration: none;
             color: var(--color-support-text);
             transition: 0.2s color;
-            font-size: 20px;
             display: block;
             transition: 0.2s all;
             cursor: pointer;
             .fas {
                 margin-right: 10px;
+                font-size: 17px;
             }
             &:hover {
                 color: var(--color-active);
@@ -58,5 +109,27 @@
                 transform: translateY(2px);
             }
         }
+    }
+}
+
+
+.header__list-mobile {
+    padding: 400px;
+}
+
+.data_user_list {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    .caret {
+        margin-left: 5px;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        vertical-align: middle;
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
     }
 }

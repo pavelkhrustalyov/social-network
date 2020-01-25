@@ -1,15 +1,27 @@
 import { 
     GET_DIALOGS, 
     SET_FILTER,
-    SET_CURRENT_DIALOG_ID
+    SET_CURRENT_DIALOG_ID,
+    UPDATE_REARED_STATUS
 } from './dialogs.actionTypes';
 
 const initial_state = {
-    dialogs: null,
+    dialogs: [],
     loading: false,
     currentDialogId: window.location.pathname.split('dialogs/')[1],
     filter: '',
     dialogOpened: false
+};
+const updateDialog = (dialogs, payload) => {
+    return dialogs.map(dialog => {
+        return dialog._id === payload.dialogId
+        ? { ...dialog, lastMessage: dialog.lastMessage.map(msg => {
+            return (msg.user || msg.user.id) !== payload.userId
+            ? { ...msg, readed: true }
+            : msg
+        })}
+        : dialog
+    })
 };
 
 const reducer = (state = initial_state, { type, payload }) => {
@@ -31,9 +43,16 @@ const reducer = (state = initial_state, { type, payload }) => {
                 currentDialogId: payload,
                 loading: false
             }
+        case UPDATE_REARED_STATUS:
+            return {
+                ...state,
+                dialogs: updateDialog(state.dialogs, payload)
+            }
         default:
             return state;
     }
 }
+
+
 
 export default reducer;

@@ -1,0 +1,10 @@
+.feed {
+    background-color: var(--color-main);
+    height: 90vh;
+    margin-top: 30px;
+    overflow: scroll;
+    padding: 20px;
+    h3 {
+        color: var(--color-main-text);
+    }
+}

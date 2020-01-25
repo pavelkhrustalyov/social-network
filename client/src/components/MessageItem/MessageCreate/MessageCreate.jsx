@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './MessageCreate.styles.scss';
 
@@ -9,9 +9,11 @@ import { connect } from 'react-redux';
 import { sendMessageOnServer } from '../../../redux/messages/messages.actions';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
-import socket from '../../../socket/socket.io';
-
-const MessageCreate = ({ theme, currentId, sendMessageOnServer }) => {
+const MessageCreate = ({
+    theme,
+    currentId,
+    sendMessageOnServer
+    }) => {
     const [ message, setMessage ] = useState('');
 
     const [ activeSmiles, setActiveSmiles ] = useState(false);
@@ -20,7 +22,6 @@ const MessageCreate = ({ theme, currentId, sendMessageOnServer }) => {
         dialogId: currentId,
         text: message
     }
-
     const onChangeFormData = (e) => {
        setMessage(e.target.value);
     };
@@ -29,14 +30,23 @@ const MessageCreate = ({ theme, currentId, sendMessageOnServer }) => {
         setMessage(message + smile.native);
     };
 
+    const onInput = () => {
+        
+    };
+
+    useEffect(() => {
+        onInput();
+    }, []);
+
+    
     const onSubmitForm = (e) => {
         e.preventDefault();
         if (message.trim() === '') {
             return;
         }
-        socket.emit('MESSAGE_CLIENT', messageData);
         sendMessageOnServer(messageData);
         setMessage('');
+        setActiveSmiles(false);
     };
     return (
         <MainBg>
@@ -48,7 +58,7 @@ const MessageCreate = ({ theme, currentId, sendMessageOnServer }) => {
                         placeholder="Напишите сообщение"
                         onChange={onChangeFormData}
                         value={message}
-                        onFocus={() => setActiveSmiles(false)}
+                        onFocus={onInput}
                     />
                     <i className="fas fa-laugh-wink"
                         onClick={() => setActiveSmiles(true)}>
@@ -70,9 +80,12 @@ const MessageCreate = ({ theme, currentId, sendMessageOnServer }) => {
     );
 };
 
-const mapStateToProps = ({ dialogs, theme }) => ({
+const mapStateToProps = ({ dialogs, theme, auth }) => ({
     currentId: dialogs.currentDialogId,
-    theme: theme.theme
+    theme: theme.theme,
+    user: auth.user,
 });
 
-export default connect(mapStateToProps, { sendMessageOnServer })(MessageCreate);
+export default connect(mapStateToProps, 
+    { sendMessageOnServer }
+)(MessageCreate);

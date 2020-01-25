@@ -13,6 +13,11 @@ import CreateDialog from '../../components/CreateDialog/CreateDialog.component';
 import { setShowModal } from "../../redux/others/other.actions";
 import FullFriends from '../../components/Friends/FullFriends/FullFriends.component';
 import UserView from '../../components/UserInfo/UserView/UserView.component';
+import Carpet from '../../components/Carpet/Carpet.component';
+import Container from '../../components/Grid/Container.component';
+import Row from '../../components/Grid/Row.component';
+import Col from '../../components/Grid/Col.component';
+import CarpetList from '../../components/Carpet/CarpetList/CarpetList.component';
 
 const HomePage = ({ 
   match, 
@@ -27,12 +32,10 @@ const HomePage = ({
   showModal,
   setShowModal }) => {
 
-  
-
   useEffect(() => {
     getUser(match.params.id);
   }, [getUser, match.params.id]);
-
+  
   return (
     <div className="home-page">
       {
@@ -43,43 +46,74 @@ const HomePage = ({
           {
               showModal === 'dialog' ? <CreateDialog userId={user._id} /> : null
           }
+          <Carpet
+            carpet={user.carpet}
+          >
+            <UserView
+              isOnline={user.isOnline}
+              user={user}
+              history={history}
+              myUser={myUser}
+              unfollowUser={unfollowUser}
+              followUser={followUser}
+              follow={follow}
+              setShowModal={setShowModal}
+            />
+          </Carpet>
           {
             showModal === 'friends' ? <FullFriends /> : null
           }
+          {
+            showModal === 'carpets' ? <CarpetList userCarpet={user.carpet} /> : null
+          }
+          <Container>
+            <Row center>
+              <Col md={12} xs={12} lg={4}>
+                <div className="home-page__people">
+                    <UserInfo user={user} />
+                </div>
+                {
+                  user.signed && user.followers
+                  && (
+                    <Row>
+                      <Col xs={12} md={12} lg={12}>
+                      {
+                        user.signed &&
+                          (<Friends
+                          type="Подписки" 
+                          data={user.signed}
+                        />)
+                      }
 
-          <UserView
-            user={user}
-            history={history}
-            myUser={myUser}
-            unfollowUser={unfollowUser}
-            followUser={followUser}
-            follow={follow}
-            setShowModal={setShowModal}
-          />
-
-          <Friends
-            type="Подписчики" 
-            data={user.followers}
-          />
-          <Friends
-            type="Подписки" 
-            data={user.signed}
-          />
-
-        </div>
-
-        <div className="home-page__people">
-          <UserInfo user={user} />
-          <div className="posts_schema">
-            {(user._id === myUser._id) && <PostCreate />}
-            <Post posts={user.posts} />
-          </div>
+                      {
+                        user.followers && (
+                          <Friends
+                            type="Подписчики" 
+                            data={user.followers}
+                          />
+                        )
+                      }
+                      </Col>
+                    </Row>
+                  )
+                }
+              </Col>
+              <Col md={12} xs={12} lg={8} >
+                  <div className="posts_schema">
+                    {(user._id === myUser._id) && <PostCreate />}
+                    <Post posts={user.posts} />
+                  </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
         </>
       }
     </div>
   );
 };
+
+
 
 const mapStateToProps = (
   { users: { 

@@ -26,7 +26,7 @@ exports.resizePostImg = async (req, res, next) => {
     if (!req.file) return next();
     req.file.filename = `post_${req.user._id}-${Date.now()}.jpeg`;
     await sharp(req.file.buffer)
-    .resize(600, 700, { fit: 'inside', withoutEnlargement: true })
+    .resize(550, 650, { fit: 'inside', withoutEnlargement: true })
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
     .toFile(`${process.env.PATH_UPLOAD_POST}/${req.file.filename}`);

@@ -12,3 +12,5 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const VISIBLE_COMMENTS = 'VISIBLE_COMMENTS';
 export const GET_FRIENDS = 'GET_FRIENDS';
 export const SET_AVATAR = 'SET_AVATAR';
+export const GET_CARPETS = 'GET_CARPETS';
+export const SET_CARPETS = 'SET_CARPETS';

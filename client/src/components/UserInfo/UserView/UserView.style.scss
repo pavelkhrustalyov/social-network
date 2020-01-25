@@ -7,3 +7,39 @@
         }
     }
 }
+.avatar {
+    position: relative;
+    transition: 0.2s all;
+   
+    @media(min-width: 645px) {
+        font-size: 55px;
+    }
+    &:hover .avatar_button {
+        bottom: 0;
+        opacity: 1;
+    }
+    .avatar_button {
+        cursor: pointer;
+        opacity: 0;
+        bottom: 100px;
+        .fas {
+            font-size: 40px;
+            margin-top: 60px;
+            color: var(--color-active);
+        }
+        transition: 0.2s all;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: var(--color-support-text);
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 100%;
+        input {
+            text-align: center;
+            background-color: transparent;
+            opacity: 0;
+        }
+    }
+}  

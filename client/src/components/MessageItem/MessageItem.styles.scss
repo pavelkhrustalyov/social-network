@@ -1,15 +1,26 @@
 .message-item {
     max-width: 250px;
     word-wrap: break-word;
-    background-color: var(--color-bg);
+    background-color: var(--color-message);
+    box-shadow: 0 0 6px 0px var(--primary-one);
     color: var(--color-main-text);
     font-size: 15px;
-    padding: 14px;
+    display: inline-block;
+    padding: 5px;
+    padding-left: 10px;
     border-radius: 10px 10px 0px 10px;
     margin-bottom: 10px;
     position: relative;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
     z-index: 1;
+    &_utils {
+        margin-left: auto;
+        margin-top: 4px;
+        color: var(--color-icon);
+        font-size: 12px;
+    }
     &:first-child {
         margin-top: 40px;
     }
@@ -18,17 +29,11 @@
         margin-left: auto;
         border-radius: 10px 10px 10px 0px;
         background-color: var(--color-my-message);
-        color: var(--color-main-text);
-        .message-item_date {
-            color: var(--color-main-text);
-        }
+        color: var(--color-support-text);
     }
     &_date {
-        position: absolute;
-        color: var(--color-main-text);
-        font-size: 14px;
-        bottom: 2px;
-        right: 5px;
+        font-size: 12px;
+        margin-left: 5px;
     }
 }
 

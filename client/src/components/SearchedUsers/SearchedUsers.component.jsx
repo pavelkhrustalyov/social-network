@@ -14,7 +14,7 @@ const SearchedUsers = ({ users, setSearchVisible }) => {
                 <Link 
                     className="searched-users_item"
                     to={`/user/${user._id}`}>
-                    <Avatar small img={user.avatar} />
+                    <Avatar isOnline={user.isOnline} small img={user.avatar} />
                     {user.fullName}
                 </Link>
             </ul>

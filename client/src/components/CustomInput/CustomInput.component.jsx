@@ -21,6 +21,7 @@ const CustomInput = forwardRef((props, ref) => {
                     </label> }
                 <input
                     {...props}
+                    ref={ref}
                     type={props.type}
                     id={props.id}
                     className="custom-input__input"

@@ -32,13 +32,13 @@ const Friends = ({
                     }
                 </div>
                 <div className="friends__wrap">
-                    {
-                        data.slice(0, 3).map(item => {
-                            return (
-                                <FriendItem key={item._id} item={item} />
-                            );
-                        })
-                    }
+                        {
+                            data.slice(0, 3).map(item => {
+                                return (
+                                    <FriendItem key={item._id} item={item} />
+                                );
+                            })
+                        }
                 </div>
             </div>
         </MainBg>

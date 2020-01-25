@@ -2,7 +2,6 @@ import React from 'react';
 import './CommentItem.styles.scss';
 import Avatar from '../../Avatar/Avatar.component';
 import formatDate from '../../../utils/formatDate';
-import { deleteComment } from '../../../redux/users/users.actions';
 import { connect } from 'react-redux';
 
 const CommentItem = ({
@@ -38,4 +37,4 @@ const CommentItem = ({
 const mapStateToProps = ({ auth: { user } }) => ({
     user
 });
-export default connect(mapStateToProps, { deleteComment })(CommentItem);
+export default connect(mapStateToProps)(CommentItem);

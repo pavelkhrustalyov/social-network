@@ -1,27 +1,75 @@
 .avatar {
+    position: relative;
     &__img {
         background-repeat: no-repeat;
         background-position: 0 0 center;
         background-size: cover;
-        &-large {
-            width: 200px;
-            height: 200px;
-            border-radius: 3px;
+        border-radius: 100%;
+        overflow: hidden;
 
+        &-large {
+            width: 150px;
+            height: 150px;
+            ~.status  {
+                height: 20px;
+                width: 20px;
+                right: 20px;
+                bottom: 10px;
+            }
+            @media (max-width: 500px) {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        &-vsmall {
+            width: 30px;
+            height: 30px;
+            ~.status  {
+                height: 8px;
+                width: 8px;
+                border: 1px solid var(--color-support-text);
+            }
+           
         }
         &-middle {
             width: 90px;
             height: 90px;
-            border-radius: 100%;
-
+            ~.status  {
+                height: 16px;
+                width: 16px;
+                bottom: 10px;
+                right: 5px;
+            }
+            @media (max-width: 320px) {
+                width: 70px;
+                height: 70px;
+            }
         }
         &-small {
             width: 50px;
             height: 50px;
-            border-radius: 100%;
         }
     }
     &__username {
         font-size: 16px;
+    }
+}
+
+.status {
+    height: 12px;
+    width: 12px;
+    border: 2px solid var(--color-support-text);
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    border-radius: 100%;
+    &.online {
+        background-color: var(--color-online);
+        border: 2px solid var(--color-support-text);
+
+    }
+    &.offline {
+        background-color: var(--color-offline);
+        border: 2px solid var(--primary-one);
     }
 }

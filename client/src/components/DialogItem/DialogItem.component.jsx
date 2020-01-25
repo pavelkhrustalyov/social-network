@@ -14,9 +14,14 @@ const DialogItem = ({
     setDialogId,
     user,
     dialogId }) => {
+    
     const partner = user._id === dialog.partner._id ? 
     dialog.author : dialog.partner;
-    
+    const lastMessage = dialog.lastMessage;
+
+    const unreadMessages = dialog.lastMessage && 
+    lastMessage.filter(m => !m.readed && m.user._id !== user._id).length;
+
     return (
         <Link className={classNames("dialog-item", {
             "selected": dialog._id === dialogId
@@ -24,7 +29,8 @@ const DialogItem = ({
             to={`/dialogs/${dialog._id}`}
             onClick={() => setDialogId(dialog._id)}>
             <div className="dialog-item_avatar">
-                <Avatar small img={partner.avatar} />
+                <Avatar isOnline={partner.isOnline}
+                small img={partner.avatar} />
             </div>
             <div className="dialog-item_userdata">
                 <div className="dialog-item_userdata-name">
@@ -37,12 +43,20 @@ const DialogItem = ({
                 </div>
                 <div className="dialog-item_userdata-text">
                 {
-                    user._id === dialog.lastMessage.user._id ?
-                    "Вы: " + sliceStr(dialog.lastMessage.text)
-                    : sliceStr(dialog.lastMessage.text)
+                    user._id === lastMessage[lastMessage.length - 1].user._id ?
+                    "Вы: " + sliceStr(lastMessage[lastMessage.length - 1].text)
+                    : sliceStr(lastMessage[lastMessage.length - 1].text)
                 }
                 </div>
             </div>
+            {
+                unreadMessages > 0
+                ?
+                    <div className="unread">
+                        { unreadMessages > 9 ? '+9' : unreadMessages }
+                    </div>
+                : null
+            }
         </Link>
     );
 }

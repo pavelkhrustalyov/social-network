@@ -5,12 +5,12 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PostItem from '../PostItem/PostItem.component';
 
 const Post = ({ posts }) => {
-
+    const title = posts.length === 0 ? 
+        `Здесь еще ничего нет 😟`
+        : 'Всего постов: ' + posts.length
     return (
         <div className="post">
-            <h3>{posts.length === 0 ? 
-                `Здесь еще ничего нет 😟` : 
-                'Всего постов: ' + posts.length}</h3>
+            <h3>{title}</h3>
             <CSSTransitionGroup
                 transitionName="posts"
                 transitionEnterTimeout={500}

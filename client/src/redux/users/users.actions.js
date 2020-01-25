@@ -11,11 +11,14 @@ import {
     DELETE_COMMENT,
     VISIBLE_COMMENTS,
     GET_FRIENDS,
-    SET_AVATAR
+    SET_AVATAR,
+    SET_CARPETS,
+    GET_CARPETS
 } from './users.types';
 
 import axios from 'axios';
 import { setAlert } from '../alert/alert.actions';
+import { setShowModal } from '../others/other.actions';
 
 export const getUser = (id) => async (dispatch) => {
     try {
@@ -179,6 +182,33 @@ export const setAvatar = (data) => async (dispatch) => {
     try {
         const urlImg = await axios.put('/api/users/user/avatar-upload', data);
         dispatch({ type: SET_AVATAR, payload: urlImg.data })
+    } catch (err) {
+        dispatch(setAlert('error', err.response.data.error));
+    }
+};
+
+export const setCarpet = (carpet) => async (dispatch) => {
+    try {
+        const res = await axios.put(`/api/users/carpets/new/${carpet}`);
+        dispatch({
+            type: SET_CARPETS,
+            payload: res.data
+        })
+        dispatch(setAlert('success', 'Коврик успешно обновлен!'))
+    } catch (err) {
+        dispatch(setAlert('error', err.response.data.error));
+    }
+
+};
+
+export const getCarpets = () => async (dispatch) => {
+    try {
+        const carpets = await axios.get('/api/users/carpets/all');
+        dispatch({
+            type: GET_CARPETS,
+            payload: carpets.data
+        })
+        dispatch(setShowModal('carpets'));
     } catch (err) {
         dispatch(setAlert('error', err.response.data.error));
     }

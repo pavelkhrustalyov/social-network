@@ -1,11 +1,13 @@
 import { 
     GET_DIALOGS, 
     SET_FILTER,
-    SET_CURRENT_DIALOG_ID
+    SET_CURRENT_DIALOG_ID,
+    UPDATE_REARED_STATUS
      } from './dialogs.actionTypes';
     
 import { setAlert } from '../alert/alert.actions';
 import axios from 'axios';
+import socket from '../../socket/socket.io';
 
 export const getDialogs = () => async (dispatch) => {
     try {
@@ -28,9 +30,10 @@ export const setFilter = (filter) => dispatch => {
 };
 
 export const setDialogId = (id) => async (dispatch) => {
+    socket.emit('DIALOGS:JOIN', id);
     dispatch({
         type: SET_CURRENT_DIALOG_ID,
-        payload: id
+        payload: id,
     });
 };
 
@@ -43,4 +46,8 @@ export const createDialog = (data) => async (dispatch) => {
     } catch (err) {
         dispatch(setAlert('error', err.response.data.error));
     }
+};
+
+export const updateReadedStatus = (data) => (dispatch) => {
+    dispatch({ type: UPDATE_REARED_STATUS, payload: data })
 };

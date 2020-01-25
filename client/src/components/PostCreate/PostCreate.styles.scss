@@ -7,6 +7,33 @@
         align-items: center;
         textarea {
             width: 400px;
+            @media(max-width: 320px) {
+                width: 200px;
+            }
+            @media(max-width: 768px) {
+                width: 300px;
+            }
+            @media(max-width: 1024px) {
+                width: 200px;
+            }
+
+            @media(max-width: 1025px) {
+                width: 300px;
+            }
+        }
+        input {
+            opacity: 0;
+        }
+       
+        @media(max-width: 500px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            textarea {
+                width: 250px;
+                margin-bottom: 20px;
+            }
         }
     }
 
@@ -21,6 +48,9 @@
             cursor: pointer;
             margin-left: 15px;
             position: relative;
+            @media(max-width: 500px) {
+                margin-bottom: 20px;
+            }
         }
         .picker {
             position: absolute;

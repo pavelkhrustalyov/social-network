@@ -1,10 +1,17 @@
 import React from 'react';
-
 import './PostItem.styles.scss';
 import Avatar from '../Avatar/Avatar.component';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
-import { likeUnlike, deletePost, showComments } from '../../redux/users/users.actions';
+
+import {
+    likeUnlike,
+    deletePost,
+    showComments,
+    createComment,
+    deleteComment
+} from '../../redux/users/users.actions';
+
 import LikesView from '../LikesView/LikesView.component';
 import CreateComment from '../Comments/CommentCreate/CommentCreate.component';
 import Comments from '../Comments/Comments.component';
@@ -14,9 +21,10 @@ const PostItem = ({
     post,
     likeUnlike,
     deletePost,
-    showComments
+    showComments,
+    createComment,
+    deleteComment
     }) => {
-        
     return (
         <div className="post_item">
             <div className="post_item-author">
@@ -45,14 +53,14 @@ const PostItem = ({
                 : null
            }
             <div className="post_item-utils">
+                <LikesView likes={ post.likes } />
                 <div className="post_item-likes">
-                    <div onClick={() => likeUnlike(post._id)} 
+                    <div onClick={() => likeUnlike(post._id)}
                         className="fas fa-heart">
-                        <LikesView likes={ post.likes } />
                     </div>
                     <span>{post.likes.length}</span>
                 </div>
-                <div 
+                <div
                     onClick={() => showComments(post._id)}
                     className="post_item-comments">
                     <i className="fas fa-comments"></i>
@@ -70,10 +78,15 @@ const PostItem = ({
             </div>
             {
                 post.showComments && post.comments.length > 0 
-                ? <Comments comments={post.comments} />
+                ? <Comments
+                    deleteComment={deleteComment}
+                    comments={post.comments} />
                 : null
             }
-            <CreateComment postId={post._id} />
+            <CreateComment
+                createComment={createComment}
+                postId={post._id}
+            />
         </div>
     );
 }
@@ -84,5 +97,7 @@ const mapStateToProps = ({ auth: { user }}) => ({
 export default connect(mapStateToProps, {
     likeUnlike,
     deletePost,
-    showComments
+    showComments,
+    createComment,
+    deleteComment
 })(PostItem);

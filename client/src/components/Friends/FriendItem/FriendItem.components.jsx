@@ -10,12 +10,10 @@ const FriendItem = ({ item }) => {
             <Link to={`/user/${item._id}`}
                 className="friend">
                 <Avatar
+                    isOnline={item.isOnline}
                     middle
                     img={item.avatar}
                 />
-                <div>
-                    {item.firstName}
-                </div>
             </Link>
         </div>
     );

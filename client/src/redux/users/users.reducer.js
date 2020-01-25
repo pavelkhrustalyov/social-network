@@ -13,6 +13,8 @@ import {
     VISIBLE_COMMENTS,
     GET_FRIENDS,
     SET_AVATAR,
+    GET_CARPETS,
+    SET_CARPETS
 } from './users.types';
 
 import {
@@ -29,7 +31,8 @@ const initial_state = {
     loading: true,
     users: [],
     toggleFollow: false,
-    friends: null
+    friends: null,
+    carpets: []
 };
 
 export default (state = initial_state, { type, payload }) => {
@@ -114,6 +117,16 @@ export default (state = initial_state, { type, payload }) => {
             return {
                 ...state,
                 user: { ...state.user, avatar: payload }
+            }
+        case GET_CARPETS:
+            return {
+                ...state,
+                carpets: payload
+            }
+        case SET_CARPETS:
+            return {
+                ...state,
+                user: { ...state.user, carpet: payload }
             }
         default:
             return state;

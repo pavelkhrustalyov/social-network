@@ -1,0 +1,29 @@
+.carpet {
+    overflow: hidden;
+    margin-bottom: 30px;
+    position: relative;
+
+    &_img {
+        width: 100vw;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    &_overlay {
+        background-color: var(--color-image);
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+    }
+}
+
+.user-view {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
